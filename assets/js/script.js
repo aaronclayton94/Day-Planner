@@ -44,17 +44,31 @@ $("#five").val(hourFive);
 
 
 
-var theTimeIs = [
-"nine", 
-"ten", 
-"eleven", 
-"twelve", 
-"one",
-"two", 
-"three", 
-"four", 
-"five"
+var timeBlock = [
+  "nine", 
+  "ten", 
+  "eleven", 
+  "twelve", 
+  "one",
+  "two", 
+  "three", 
+  "four", 
+  "five"
 ]
+
+var timeId = [
+  9,
+  10,
+  11,
+  12,
+  1,
+  2,
+  3,
+  4,
+  5
+]
+
+
 
 function loadHour() {
   if (t < currentHour) {
