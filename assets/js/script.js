@@ -1,24 +1,68 @@
+// capture value and input field and store it in local storage
+// when i first get to the page, read whats in local storage
+// display values in the proper input box
+// indicate which values are past present and future
+// added feature update the date
+
 function currentTime() {
   $('#clock').html(moment().format('MMMM Do YYYY, h:mm a'));
 }
 setInterval(currentTime, 1000);
 
-var hour = $(".hour");
-var note = $(".form-control");
-var saveBtn = $(".btn")
+var hourEl = $(".hour");
+var noteEl = $(".form-control");
+var saveBtn = $(".btn");
+var currentHour = parseInt(moment().format("kk"));
+var t = 9;
 
 
 
+saveBtn.on("click", function() {
+  var dataTime = $(this).attr("data-time");
+  var userInput = $("#" + dataTime).val();
+  localStorage.setItem(dataTime, userInput);
+});
 
-/* <div class="row">
-    <div class="col-2 text-right">
-        <p class="hour">9:00 AM</p>
-    </div>
-    <div class="col-8">
-        <input class="form-control" type="text">
-    </div>
-    <div class="col-1">
-        <button type="btn" class="btn btn-default">
-            <i class="far fa-save"></i>
-        </button>
-    </div> */
+var hourNine = localStorage.getItem("nine");
+$("#nine").val(hourNine);
+var hourTen = localStorage.getItem("ten");
+$("#ten").val(hourTen);
+var hourEleven = localStorage.getItem("eleven");
+$("#eleven").val(hourEleven);
+var hourTwelve = localStorage.getItem("twelve");
+$("#twelve").val(hourTwelve);
+var hourOne = localStorage.getItem("one");
+$("#one").val(hourOne);
+var hourTwo = localStorage.getItem("two");
+$("#two").val(hourTwo);
+var hourThree = localStorage.getItem("three");
+$("#three").val(hourThree);
+var hourFour = localStorage.getItem("four");
+$("#four").val(hourFour);
+var hourFive = localStorage.getItem("five");
+$("#five").val(hourFive);
+
+
+
+var theTimeIs = [
+"nine", 
+"ten", 
+"eleven", 
+"twelve", 
+"one",
+"two", 
+"three", 
+"four", 
+"five"
+]
+
+function loadHour() {
+  if (t < currentHour) {
+  $(".form-control").addClass("future");
+  } else if (t === currentHour) {
+  $(".form-control").addClass("present");
+  } else {
+  $(".form-control").addClass("past");
+  }
+}
+loadHour();
