@@ -4,79 +4,69 @@
 // indicate which values are past present and future
 // added feature update the date
 
-function currentTime() {
-  $('#clock').html(moment().format('MMMM Do YYYY, h:mm a'));
-}
-setInterval(currentTime, 1000);
-
-var hourEl = $(".hour");
-var noteEl = $(".form-control");
-var saveBtn = $(".btn");
-var currentHour = parseInt(moment().format("kk"));
-var t = 9;
+// wrap the whole script to load when the page is ready / not needed but did it anyway
 
 
+$(document).ready(function(){
 
-saveBtn.on("click", function() {
-  var dataTime = $(this).attr("data-time");
-  var userInput = $("#" + dataTime).val();
-  localStorage.setItem(dataTime, userInput);
+  
+  const saveBtn = $(".btn");
+  const currentHour = parseInt(moment().format("kk"));
+
+  // function to display the time
+  function currentTime() {
+    $('#clock').html(moment().format('MMMM Do YYYY, h:mm a'));
+  }
+
+  // local storage function for each timeblock
+  function getStoredTime() {
+    const hourNine = localStorage.getItem("nine");
+    $("#nine").val(hourNine);
+    const hourTen = localStorage.getItem("ten");
+    $("#ten").val(hourTen);
+    const hourEleven = localStorage.getItem("eleven");
+    $("#eleven").val(hourEleven);
+    const hourTwelve = localStorage.getItem("twelve");
+    $("#twelve").val(hourTwelve);
+    const hourOne = localStorage.getItem("one");
+    $("#one").val(hourOne);
+    const hourTwo = localStorage.getItem("two");
+    $("#two").val(hourTwo);
+    const hourThree = localStorage.getItem("three");
+    $("#three").val(hourThree);
+    const hourFour = localStorage.getItem("four");
+    $("#four").val(hourFour);
+    const hourFive = localStorage.getItem("five");
+    $("#five").val(hourFive);
+  }
+
+  // past future present function
+  function loadHour() {
+    $("input").each(function() {
+      const rowTime = parseInt($(this).attr("data-hour"));
+      if (rowTime > currentHour) {
+        $(this).removeClass("present", "past");
+        $(this).addClass("future");
+      } else if (rowTime === currentHour) {
+        $(this).addClass("present");
+        $(this).removeClass("future", "past");
+        $(this).addClass("present");
+      } else {
+        $(this).removeClass("present", "future");
+        $(this).addClass("past");
+      }
+    });
+  }
+
+  // on click event safe to local storage
+  saveBtn.on("click", function() {
+    const dataTime = $(this).attr("data-time");
+    const userInput = $("#" + dataTime).val();
+    localStorage.setItem(dataTime, userInput);
+  });
+  // global function calls
+  loadHour();
+  getStoredTime();
+  setInterval(currentTime, 1000);
 });
 
-var hourNine = localStorage.getItem("nine");
-$("#nine").val(hourNine);
-var hourTen = localStorage.getItem("ten");
-$("#ten").val(hourTen);
-var hourEleven = localStorage.getItem("eleven");
-$("#eleven").val(hourEleven);
-var hourTwelve = localStorage.getItem("twelve");
-$("#twelve").val(hourTwelve);
-var hourOne = localStorage.getItem("one");
-$("#one").val(hourOne);
-var hourTwo = localStorage.getItem("two");
-$("#two").val(hourTwo);
-var hourThree = localStorage.getItem("three");
-$("#three").val(hourThree);
-var hourFour = localStorage.getItem("four");
-$("#four").val(hourFour);
-var hourFive = localStorage.getItem("five");
-$("#five").val(hourFive);
-
-
-
-var timeBlock = [
-  "nine", 
-  "ten", 
-  "eleven", 
-  "twelve", 
-  "one",
-  "two", 
-  "three", 
-  "four", 
-  "five"
-]
-
-var timeId = [
-  9,
-  10,
-  11,
-  12,
-  1,
-  2,
-  3,
-  4,
-  5
-]
-
-
-
-function loadHour() {
-  if (t < currentHour) {
-  $(".form-control").addClass("future");
-  } else if (t === currentHour) {
-  $(".form-control").addClass("present");
-  } else {
-  $(".form-control").addClass("past");
-  }
-}
-loadHour();

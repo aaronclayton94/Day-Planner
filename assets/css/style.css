@@ -2,7 +2,7 @@ body {
   font-family: 'liquid_crystalregular', sans-serif;
   user-select: none;
   font-size: 16px;
-  line-height: 1;
+  line-height: 1.9;
 }
   
 .clock {
@@ -33,4 +33,41 @@ body {
 .future {
   background-color: #77dd77;
   color: white;
+}
+.jumbotron {
+  background-image: url("https://www.smak.co.za/images/bg.jpg");
+  background-size: 100% 100%;
+  color: white;
+}
+
+.btn {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background-color: #06AED5;
+  color: white;
+  position: absolute; left: 0;
+  margin-top: 2px;
+}
+
+.hourEl {
+  background-color: #e9ecef;
+  color: #000000;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  margin-top: 2px;
+  display: inline-block;
+}
+
+.hour {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: fit-content;
+}
+
+.form-control {
+  padding-top: 4px;
+  margin-top: 2px;
 }
