@@ -15,7 +15,8 @@ $(document).ready(function(){
 
   // function to display the time
   function currentTime() {
-    $('#clock').html(moment().format('MMMM Do YYYY, h:mm a'));
+    $('#fullClock').html(moment().format('MMMM Do YYYY, h:mm a'));
+    $('#smallClock').html(moment().format('h:mm a'));
   }
 
   // local storage function for each timeblock
@@ -69,4 +70,3 @@ $(document).ready(function(){
   getStoredTime();
   setInterval(currentTime, 1000);
 });
-
