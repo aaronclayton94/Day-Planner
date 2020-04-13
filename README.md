@@ -6,4 +6,4 @@ Using moment.js for date/time
 saving data to local storage
 using bootstrap for css
 
-https://github.com/aaronclayton94/Day-Planner
+https://aaronclayton94.github.io/Day-Planner
